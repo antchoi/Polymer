@@ -1,0 +1,40 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^server/plugin/
+      - id: end-of-file-fixer
+        exclude: ^server/plugin/
+      - id: check-yaml
+        exclude: ^server/plugin/
+
+  - repo: https://github.com/myint/autoflake
+    rev: v1.7.6
+    hooks:
+      - id: autoflake
+        exclude: ^server/plugin/
+        args:
+          - "--in-place"
+          - "--remove-unused-variables"
+          - "--remove-duplicate-keys"
+          - "--recursive"
+          - "server"
+        language: system
+        types: [python]
+        pass_filenames: false
+
+  - repo: https://github.com/psf/black
+    rev: 22.10.0
+    hooks:
+      - id: black
+        exclude: ^(server/plugin/|server/unittest/sample/)
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        exclude: ^(server/plugin/|server/unittest/sample/)
+        args: ["--profile", "black", "--filter-files"]

@@ -1,0 +1,6 @@
+docker:
+  tag: inferencer
+  repo: docker.io
+  version:
+    - latest
+    - 1.0.0

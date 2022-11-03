@@ -1,0 +1,35 @@
+# extra url
+--extra-index-url https://download.pytorch.org/whl/cu116
+
+# base
+requests
+httpx[http2]
+pytz
+attrs
+
+# server
+fastapi
+python-multipart
+uvicorn[standard]
+dependency-injector[yaml,pydantic]>=4.3
+uvloop>=0.16
+prettytable>=3.0
+opencv-python>=4.1.2
+loguru>=0.5
+Pillow
+
+# SuperResolution (HAT)
+torch>=1.7
+torchvision
+basicsr
+einops
+
+# Detection (Yolo v7)
+onnx
+onnxruntime-gpu
+albumentations
+imutils
+
+# dev
+pytest
+pytest-asyncio

@@ -1,0 +1,12 @@
+Dockerfile
+docker-compose.yml
+docker-compose.test.yml
+.gitignore
+.env
+.env.template
+.pre-commit-config.yaml
+scripts
+.vscode
+.pytest_cache
+server/unittest
+docker

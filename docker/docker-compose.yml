@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+  default:
+    external: true
+    name: ${INTERNAL_NETWORK}
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      network: host
+    init: true
+    restart: unless-stopped
+    networks:
+      - default
+    ports:
+      - ${SERVER_HTTP_PORT}:80
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      PYTHONWARNINGS: ${SERVER_PRINT_WARNING:-ignore}
+
+      SERVER_TIMEZONE: ${SERVER_TIMEZONE:-Asia/Seoul}
+      SERVER_ENGINE_DEVICES: ${SERVER_ENGINE_DEVICES}
+      SERVER_WORKER_NUM: ${SERVER_WORKER_NUM}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
